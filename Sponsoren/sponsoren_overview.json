@@ -1,0 +1,27 @@
+[
+    {
+        "filename": "alupur.png",
+        "name": "Alupur",
+        "teams": ["Herren 1"]
+    },
+    {
+        "filename": "Aubere.png",
+        "name": "Aubere",
+        "teams": [""]
+    },
+    {
+        "filename": "element_13.jpg",
+        "name": "Alupur",
+        "teams": ["U16 - Männlich", "U16 - Weiblich", "U18 - Männlich", "U18 - Weiblich", "U20 - Männlich", "U20 - Weiblich", "U14 - Männlich"]
+    },
+    {
+        "filename": "lenz.png",
+        "name": "Aubere",
+        "teams": [""]
+    },
+    {
+        "filename": "potsdamergaerten.png",
+        "name": "Potsdamer Gärten",
+        "teams": ["Damen 1"]
+    }
+]

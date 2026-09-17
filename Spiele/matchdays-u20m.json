@@ -3,7 +3,8 @@
     "team": "U20 - Männlich",
     "home": false,
     "date": "20.09.2026",
-    "location": "SV Schulzendorf",
+    "location": "Zeuthen",
+    "home_team": "SV Schulzendorf",
     "match_day_name": "1. Spieltag LP / LM Qualifikation",
     "teams": ["Werderaner VV 1990", "RW Schönow", "SV Motor Hennigsdorf"]
   },

@@ -3,7 +3,8 @@
     "team": "U20 - Weiblich",
     "home": false,
     "date": "20.09.2026",
-    "location": "SV BW 07 Spremberg",
+    "location": "Spremberg",
+    "home_team": "SV BW 07 Spremberg",
     "match_day_name": "1. Spieltag LP / LM Qualifikation",
     "teams": ["Werderaner VV 1990", "RW Schönow", "SV BW 07 Spremberg", "VC BW Brandenburg", "SG Einheit Zepernick", "VV Märkische Adler", "RSV Eintracht"]
   },

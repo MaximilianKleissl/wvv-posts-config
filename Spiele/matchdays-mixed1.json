@@ -1,0 +1,142 @@
+[
+  {
+    "team": "Mixed 1",
+    "home": true,
+    "date": "02.10.2026",
+    "location": "Havelauenhalle",
+    "homeTeam": "Werderaner VV 1990 I",
+    "match_day_name": "Mixed",
+    "matches": [
+      {
+        "time": "20:00",
+        "home": "Werderaner VV 1990 I",
+        "away": "Werderaner VV 1990 II"
+      }
+    ]
+  },
+  {
+    "team": "Mixed 1",
+    "home": false,
+    "date": "02.11.2026",
+    "location": "Hannah-Arendt-Gymnasium",
+    "homeTeam": "VC Sandwürmer",
+    "match_day_name": "Mixed",
+    "matches": [
+      {
+        "time": "20:00",
+        "home": "VC Sandwürmer",
+        "away": "Werderaner VV 1990 I"
+      },
+      {
+        "time": "20:00",
+        "home": "PVC 91 II",
+        "away": "Werderaner VV 1990 I"
+      }
+    ]
+  },
+  {
+    "team": "Mixed 1",
+    "home": true,
+    "date": "27.11.2026",
+    "location": "Steuben-Gesamtschule",
+    "homeTeam": "Werderaner VV 1990 I",
+    "match_day_name": "Mixed",
+    "matches": [
+      {
+        "time": "20:00",
+        "home": "SCP KSF Mix",
+        "away": "Werderaner VV 1990 I"
+      },
+      {
+        "time": "20:00",
+        "home": "Werderaner VV 1990 I",
+        "away": "WSG Potsdam-Waldstadt HISYF"
+      }
+    ]
+  },
+  {
+    "team": "Mixed 1",
+    "home": false,
+    "date": "12.01.2027",
+    "location": "TH Kurfürstenstraße",
+    "homeTeam": "PVC 91 I",
+    "match_day_name": "Mixed",
+    "matches": [
+      {
+        "time": "19:30",
+        "home": "PVC 91 I",
+        "away": "Werderaner VV 1990 I"
+      },
+      {
+        "time": "19:30",
+        "home": "VV Michendorf",
+        "away": "Werderaner VV 1990 I"
+      }
+    ]
+  },
+  {
+    "team": "Mixed 1",
+    "home": true,
+    "date": "12.02.2027",
+    "location": "Havelauenhalle",
+    "homeTeam": "Werderaner VV 1990 I",
+    "match_day_name": "Mixed",
+    "matches": [
+      {
+        "time": "20:00",
+        "home": "Werderaner VV 1990 I",
+        "away": "WSG Potsdam-Waldstadt"
+      }
+    ]
+  },
+  {
+    "team": "Mixed 1",
+    "home": true,
+    "date": "05.03.2027",
+    "location": "Havelauenhalle",
+    "homeTeam": "Werderaner VV 1990 I",
+    "match_day_name": "Mixed",
+    "matches": [
+      {
+        "time": "20:00",
+        "home": "Werderaner VV 1990 I",
+        "away": "RSV Eintracht"
+      },
+      {
+        "time": "20:00",
+        "home": "Werderaner VV 1990 I",
+        "away": "SV Babelsberg 03 Mixed II"
+      }
+    ]
+  },
+  {
+    "team": "Mixed 1",
+    "home": true,
+    "date": "09.04.2027",
+    "location": "Havelauenhalle",
+    "homeTeam": "Werderaner VV 1990 I",
+    "match_day_name": "Mixed",
+    "matches": [
+      {
+        "time": "20:00",
+        "home": "Werderaner VV 1990 I",
+        "away": "PVC 91 III"
+      }
+    ]
+  },
+  {
+    "team": "Mixed 1",
+    "home": false,
+    "date": "27.04.2027",
+    "location": "Sporthalle der Katholischen Marienschule",
+    "homeTeam": "SV Babelsberg 03 Mixed I",
+    "match_day_name": "Mixed",
+    "matches": [
+      {
+        "time": "20:00",
+        "home": "SV Babelsberg 03 Mixed I",
+        "away": "Werderaner VV 1990 I"
+      }
+    ]
+  }
+]

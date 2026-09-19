@@ -11,7 +11,7 @@
       {
         "time": "11:00",
         "home": "VV Michendorf",
-        "away": "VC Teltow/Kleinmachnow I",
+        "away": "VC Teltow/ Kleinmachnow I",
         "result": {
           "home": 1,
           "away": 3
@@ -20,7 +20,7 @@
       {
         "time": "13:00",
         "home": "Werderaner VV 1990 II",
-        "away": "VC Teltow/Kleinmachnow I",
+        "away": "VC Teltow/ Kleinmachnow I",
         "result": {
           "home": 1,
           "away": 3
@@ -217,8 +217,8 @@
     "team": "Herren 2",
     "home": false,
     "date": "13.03.2027",
-    "location": "Teltow/Kleinmachnow",
-    "homeTeam": "VC Teltow/Kleinmachnow I",
+    "location": "Teltow/ Kleinmachnow",
+    "homeTeam": "VC Teltow/ Kleinmachnow I",
     "match_day_name": "Landesliga",
     "matches": [
       {
@@ -228,12 +228,12 @@
       },
       {
         "time": "13:00",
-        "home": "VC Teltow/Kleinmachnow I",
+        "home": "VC Teltow/ Kleinmachnow I",
         "away": "SC Potsdam IV"
       },
       {
         "time": "15:00",
-        "home": "VC Teltow/Kleinmachnow I",
+        "home": "VC Teltow/ Kleinmachnow I",
         "away": "Werderaner VV 1990 II"
       }
     ]

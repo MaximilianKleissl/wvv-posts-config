@@ -6,22 +6,36 @@
     "location": "Havelauenhalle",
     "homeTeam": "Werderaner VV",
     "match_day_name": "Landesliga",
+    "match_day_result": "2 Punkte",
     "matches": [
       {
         "time": "11:00",
         "home": "VV Michendorf",
-        "away": "VC Teltow/Kleinmachnow I"
+        "away": "VC Teltow/Kleinmachnow I",
+        "result": {
+          "home": 1,
+          "away": 3
+        }
       },
       {
         "time": "13:00",
         "home": "Werderaner VV 1990 II",
-        "away": "VV Michendorf"
+        "away": "VC Teltow/Kleinmachnow I",
+        "result": {
+          "home": 1,
+          "away": 3
+        }
       },
       {
         "time": "15:00",
         "home": "Werderaner VV 1990 II",
-        "away": "VC Teltow/Kleinmachnow I"
+        "away": "VV Michendorf",
+        "result": {
+          "home": 3,
+          "away": 2
+        }
       }
+
     ]
   },
   {

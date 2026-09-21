@@ -17,7 +17,6 @@
           "away": 1
         }
       },
-      
       {
         "time": "13:00",
         "home": "Cottbuser Volleyballverein",
@@ -68,12 +67,12 @@
     "match_day_name": "Brandenburgliga",
     "matches": [
       {
-        "time": "13:00",
+        "time": "15:00",
         "home": "SC Potsdam II",
         "away": "VC Angermünde"
       },
       {
-        "time": "15:00",
+        "time": "13:00",
         "home": "SC Potsdam II",
         "away": "Werderaner VV 1990"
       },
@@ -87,18 +86,18 @@
   {
     "team": "Herren 1",
     "home": false,
-    "date": "06.12.2026",
-    "location": "Potsdam",
+    "date": "05.12.2026",
+    "location": "SH Heinrich-Mann-Allee",
     "homeTeam": "SC Potsdam III",
     "match_day_name": "Brandenburgliga",
     "matches": [
       {
-        "time": "13:00",
+        "time": "15:00",
         "home": "SC Potsdam III",
         "away": "Potsdamer VC 91 I"
       },
       {
-        "time": "15:00",
+        "time": "13:00",
         "home": "SC Potsdam III",
         "away": "Werderaner VV 1990"
       },
@@ -118,18 +117,18 @@
     "match_day_name": "Brandenburgliga",
     "matches": [
       {
-        "time": "13:00",
-        "home": "TSGL Schöneiche II",
-        "away": "Werderaner VV 1990"
+        "time": "11:00",
+        "home": "Werderaner VV 1990",
+        "away": "Kremmener SV"
       },
       {
         "time": "15:00",
         "home": "TSGL Schöneiche II",
-        "away": "Kremmener SV"
+        "away": "Werderaner VV 1990"
       },
       {
-        "time": "11:00",
-        "home": "Werderaner VV 1990",
+        "time": "13:00",
+        "home": "TSGL Schöneiche II",
         "away": "Kremmener SV"
       }
     ]
@@ -144,17 +143,17 @@
     "matches": [
       {
         "time": "13:00",
-        "home": "VC BW Brandenburg",
-        "away": "SV Lindow-Gransee II"
-      },
-      {
-        "time": "13:00",
         "home": "Werderaner VV 1990",
-        "away": "VC BW Brandenburg"
+        "away": "SV Lindow-Gransee II"
       },
       {
         "time": "15:00",
         "home": "Werderaner VV 1990",
+        "away": "VC BW Brandenburg"
+      },
+      {
+        "time": "11:00",
+        "home": "SV Lindow-Gransee II",
         "away": "VC BW Brandenburg"
       }
     ]
@@ -168,18 +167,18 @@
     "match_day_name": "Brandenburgliga",
     "matches": [
       {
-        "time": "13:00",
-        "home": "Potsdamer VC 91 I",
-        "away": "Werderaner VV 1990"
+        "time": "11:00",
+        "home": "Werderaner VV 1990",
+        "away": "SC Potsdam II"
       },
       {
         "time": "15:00",
         "home": "Potsdamer VC 91 I",
-        "away": "SC Potsdam II"
+        "away": "Werderaner VV 1990"
       },
       {
-        "time": "11:00",
-        "home": "Werderaner VV 1990",
+        "time": "13:00",
+        "home": "Potsdamer VC 91 I",
         "away": "SC Potsdam II"
       }
     ]
@@ -193,18 +192,18 @@
     "match_day_name": "Brandenburgliga",
     "matches": [
       {
-        "time": "13:00",
-        "home": "VC Angermünde",
-        "away": "Werderaner VV 1990"
+        "time": "11:00",
+        "home": "Werderaner VV 1990",
+        "away": "TSGL Schöneiche II"
       },
       {
         "time": "15:00",
         "home": "VC Angermünde",
-        "away": "TSGL Schöneiche II"
+        "away": "Werderaner VV 1990"
       },
       {
-        "time": "11:00",
-        "home": "Werderaner VV 1990",
+        "time": "13:00",
+        "home": "VC Angermünde",
         "away": "TSGL Schöneiche II"
       }
     ]
@@ -223,12 +222,12 @@
         "away": "Cottbuser Volleyballverein"
       },
       {
-        "time": "13:00",
+        "time": "15:00",
         "home": "Werderaner VV 1990",
         "away": "SV Lindow-Gransee II"
       },
       {
-        "time": "15:00",
+        "time": "13:00",
         "home": "Werderaner VV 1990",
         "away": "Cottbuser Volleyballverein"
       }

@@ -3,9 +3,10 @@
     "team": "U18 - Männlich",
     "home": false,
     "date": "27.09.2026",
-    "location": "???",
+    "location": "Kyritz",
+    "homeTeam": "VC Fortuna Kyritz",
     "match_day_name": "1. Spieltag LP / LM Qualifikation",
-    "teams": ["Werderaner VV 1990", "VC BW Brandenburg", "Kremmener SV", "SC Potsdam"]
+    "teams": ["Werderaner VV 1990", "TSGL Schöneiche", "VC Fortuna Kyritz", "Cottbuser Volleyballverein", "VC BW Brandenburg"]
   },
   {
     "team": "U18 - Männlich",

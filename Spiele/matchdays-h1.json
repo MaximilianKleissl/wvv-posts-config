@@ -6,21 +6,31 @@
     "location": "Cottbus",
     "homeTeam": "Cottbuser Volleyballverein",
     "match_day_name": "Brandenburgliga",
+    "match_day_result": "3 Punkte",
     "matches": [
+      {
+        "time": "11:00",
+        "home": "SC Potsdam III",
+        "away": "Werderaner VV 1990",
+        "result": {
+          "home": 3,
+          "away": 1
+        }
+      },
+      
       {
         "time": "13:00",
         "home": "Cottbuser Volleyballverein",
-        "away": "SC Potsdam III"
+        "away": "Werderaner VV 1990",
+        "result": {
+          "home": 1,
+          "away": 3
+        }
       },
       {
         "time": "15:00",
         "home": "Cottbuser Volleyballverein",
-        "away": "Werderaner VV 1990"
-      },
-      {
-        "time": "11:00",
-        "home": "SC Potsdam III",
-        "away": "Werderaner VV 1990"
+        "away": "SC Potsdam III"
       }
     ]
   },

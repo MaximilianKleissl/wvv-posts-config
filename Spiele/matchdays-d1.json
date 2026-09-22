@@ -13,12 +13,12 @@
         "away": "Werderaner VV 1990"
       },
       {
-        "time": "13:00",
+        "time": "15:00",
         "home": "VC Angermünde",
         "away": "SG Einheit Zepernick II"
       },
       {
-        "time": "15:00",
+        "time": "13:00",
         "home": "VC Angermünde",
         "away": "Werderaner VV 1990"
       }
@@ -38,12 +38,12 @@
         "away": "SV Motor Hennigsdorf"
       },
       {
-        "time": "13:00",
+        "time": "15:00",
         "home": "Werderaner VV 1990",
         "away": "VV Michendorf"
       },
       {
-        "time": "15:00",
+        "time": "13:00",
         "home": "Werderaner VV 1990",
         "away": "SV Motor Hennigsdorf"
       }
@@ -58,12 +58,12 @@
     "match_day_name": "Landesliga",
     "matches": [
       {
-        "time": "13:00",
+        "time": "15:00",
         "home": "Belziger SG Einheit",
         "away": "Potsdamer VC 91"
       },
       {
-        "time": "15:00",
+        "time": "13:00",
         "home": "Belziger SG Einheit",
         "away": "Werderaner VV 1990"
       },
@@ -82,12 +82,12 @@
     "homeTeam": "SG Einheit Zepernick II",
     "matches": [
       {
-        "time": "13:00",
+        "time": "15:00",
         "home": "SG Einheit Zepernick II",
         "away": "SV LdV Nauen"
       },
       {
-        "time": "15:00",
+        "time": "13:00",
         "home": "SG Einheit Zepernick II",
         "away": "Werderaner VV 1990"
       },
@@ -112,12 +112,12 @@
         "away": "SV Motor Hennigsdorf"
       },
       {
-        "time": "13:00",
+        "time": "15:00",
         "home": "VC Fortuna Kyritz",
         "away": "Werderaner VV 1990"
       },
       {
-        "time": "15:00",
+        "time": "13:00",
         "home": "VC Fortuna Kyritz",
         "away": "SV Motor Hennigsdorf"
       }
@@ -137,12 +137,12 @@
         "away": "Luckenwalder Volleyball Club"
       },
       {
-        "time": "13:00",
+        "time": "15:00",
         "home": "Werderaner VV 1990",
         "away": "VV Michendorf"
       },
       {
-        "time": "15:00",
+        "time": "13:00",
         "home": "Werderaner VV 1990",
         "away": "Luckenwalder Volleyball Club"
       }
@@ -162,12 +162,12 @@
         "away": "Belziger SG Einheit"
       },
       {
-        "time": "13:00",
+        "time": "15:00",
         "home": "SV LdV Nauen",
         "away": "Werderaner VV 1990"
       },
       {
-        "time": "15:00",
+        "time": "13:00",
         "home": "SV LdV Nauen",
         "away": "Belziger SG Einheit"
       }
@@ -187,12 +187,12 @@
         "away": "VC Fortuna Kyritz"
       },
       {
-        "time": "13:00",
+        "time": "15:00",
         "home": "Potsdamer VC 91",
         "away": "Werderaner VV 1990"
       },
       {
-        "time": "15:00",
+        "time": "13:00",
         "home": "Potsdamer VC 91",
         "away": "VC Fortuna Kyritz"
       }
@@ -212,12 +212,12 @@
         "away": "VC Angermünde"
       },
       {
-        "time": "13:00",
+        "time": "15:00",
         "home": "Werderaner VV 1990",
         "away": "Luckenwalder Volleyball Club"
       },
       {
-        "time": "15:00",
+        "time": "13:00",
         "home": "Werderaner VV 1990",
         "away": "VC Angermünde"
       }

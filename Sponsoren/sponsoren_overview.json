@@ -1,22 +1,78 @@
 [
-    {
-        "filename": "alupur.png",
-        "name": "Alupur",
-        "teams": ["Herren 1"]
-    },
-    {
-        "filename": "Aubere.png",
-        "name": "Aubere",
-        "teams": [""]
-    },
-    {
-        "filename": "element_13.jpg",
-        "name": "Alupur",
-        "teams": ["U16 - Männlich", "U16 - Weiblich", "U18 - Männlich", "U18 - Weiblich", "U20 - Männlich", "U20 - Weiblich", "U14 - Männlich"]
-    },
-    {
-        "filename": "potsdamergaerten.jpg",
-        "name": "Potsdamer Gärten",
-        "teams": ["Damen 1"]
-    }
+  {
+    "filename": "alupur.png",
+    "name": "Alupur",
+    "teams": [
+      "Herren 1",
+      "Damen 1",
+      "Herren 2",
+      "Mixed 1",
+      "Mixed 2",
+      "U14 - Männlich",
+      "U14 - Weiblich",
+      "U16 - Männlich",
+      "U16 - Weiblich",
+      "U18 - Männlich",
+      "U18 - Weiblich",
+      "U20 - Männlich",
+      "U20 - Weiblich"
+    ]
+  },
+  {
+    "filename": "Aubere.png",
+    "name": "Aubere",
+    "teams": [
+      "U20 - Männlich",
+      "Damen 1",
+      "Herren 1",
+      "Herren 2",
+      "Mixed 1",
+      "Mixed 2",
+      "U14 - Männlich",
+      "U14 - Weiblich",
+      "U16 - Männlich",
+      "U16 - Weiblich",
+      "U18 - Männlich",
+      "U18 - Weiblich",
+      "U20 - Weiblich"
+    ]
+  },
+  {
+    "filename": "element_13.jpg",
+    "name": "Alupur",
+    "teams": [
+      "Damen 1",
+      "Herren 1",
+      "Herren 2",
+      "Mixed 1",
+      "Mixed 2",
+      "U14 - Männlich",
+      "U14 - Weiblich",
+      "U16 - Männlich",
+      "U16 - Weiblich",
+      "U18 - Männlich",
+      "U18 - Weiblich",
+      "U20 - Männlich",
+      "U20 - Weiblich"
+    ]
+  },
+  {
+    "filename": "potsdamergaerten.jpg",
+    "name": "Potsdamer Gärten",
+    "teams": [
+      "Damen 1",
+      "Herren 1",
+      "Herren 2",
+      "Mixed 1",
+      "Mixed 2",
+      "U14 - Männlich",
+      "U14 - Weiblich",
+      "U16 - Männlich",
+      "U16 - Weiblich",
+      "U18 - Männlich",
+      "U18 - Weiblich",
+      "U20 - Männlich",
+      "U20 - Weiblich"
+    ]
+  }
 ]

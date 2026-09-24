@@ -1,16 +1,57 @@
 {
-  "default": ["baumbluetenumzug.jpg"],
+  "default": [
+    "baumbluetenumzug.jpg"
+  ],
   "teams": {
-    "Damen 1": ["damen1.png", "damen1II.png"],
-    "Herren 1": ["janne.png", "herren1.png", "herren1_2.jpeg"],
-    "Herren 2": ["herrren2_2.png"],
-    "U20 - Weiblich": ["jugend_gesamt.png"],
-    "U18 - Weiblich": ["u18w.png", "u18wII.png", "u18wIII.png", "u18wIV.png"],
-    "U16 - Weiblich": ["jugend_gesamt.png"],
-    "U14 - Weiblich": ["jugend_gesamt.png", "u14w.png", "u14.png"],
-    "U20 - Männlich": ["jugend_gesamt.png", "u20m.png"],
-    "U18 - Männlich": ["jugend_gesamt.png"],
-    "U16 - Männlich": ["jugend_gesamt.png", "u16m.png"],
-    "U14 - Männlich": ["jugend_gesamt.png", "u14.png"]
+    "Damen 1": [
+      "damen1.jpeg",
+      "damen1II.png"
+    ],
+    "Herren 1": [
+      "janne.png",
+      "herren1.png",
+      "herren1_2.jpeg"
+    ],
+    "Herren 2": [
+      "herrren2_2.png"
+    ],
+    "U20 - Weiblich": [
+      "jugend_gesamt.png"
+    ],
+    "U18 - Weiblich": [
+      "u18w.png",
+      "u18wII.png",
+      "u18wIII.png",
+      "u18wIV.png"
+    ],
+    "U16 - Weiblich": [
+      "jugend_gesamt.png"
+    ],
+    "U14 - Weiblich": [
+      "jugend_gesamt.png",
+      "u14w.png",
+      "u14.png"
+    ],
+    "U20 - Männlich": [
+      "jugend_gesamt.png",
+      "u20m.png"
+    ],
+    "U18 - Männlich": [
+      "jugend_gesamt.png"
+    ],
+    "U16 - Männlich": [
+      "jugend_gesamt.png",
+      "u16m.png"
+    ],
+    "U14 - Männlich": [
+      "jugend_gesamt.png",
+      "u14.png"
+    ],
+    "Mixed 1": [
+      ""
+    ],
+    "Mixed 2": [
+      ""
+    ]
   }
 }

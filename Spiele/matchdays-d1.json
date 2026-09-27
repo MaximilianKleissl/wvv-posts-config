@@ -6,21 +6,28 @@
     "location": "Angermünde",
     "homeTeam": "VC Angermünde",
     "match_day_name": "Landesliga",
+    "match_day_result": "3 Punkte",
     "matches": [
       {
         "time": "11:00",
         "home": "SG Einheit Zepernick II",
-        "away": "Werderaner VV 1990"
+        "away": "Werderaner VV 1990",
+        "result": {
+          "home": 0, "away": 3
+        }
+      },
+      {
+        "time": "13:00",
+        "home": "VC Angermünde",
+        "away": "Werderaner VV 1990",
+        "result": {
+          "home": 3, "away": 1
+        }
       },
       {
         "time": "15:00",
         "home": "VC Angermünde",
         "away": "SG Einheit Zepernick II"
-      },
-      {
-        "time": "13:00",
-        "home": "VC Angermünde",
-        "away": "Werderaner VV 1990"
       }
     ]
   },

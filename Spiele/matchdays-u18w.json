@@ -1,36 +1,48 @@
 [
   {
     "team": "U18 - Weiblich",
-    "home": false,
+    "home": true,
     "date": "27.09.2026",
     "location": "Marienberghalle",
     "homeTeam": "VC BW Brandenburg",
     "match_day_name": "1. Spieltag LP / LM Qualifikation",
-    "match_day_result": "1. Platz",
+    "match_day_result": "2. Platz",
     "matches": [
       {
         "time": "10:00",
         "home": "Werderaner VV 1990",
         "away": "VC Schlafmützen 13",
-        "result": {"home": 2, "away": 0}
+        "result": {
+          "home": 2,
+          "away": 0
+        }
       },
-            {
+      {
         "time": "11:15",
         "home": "Werderaner VV 1990",
-        "away": "Potsdamer VC",
-        "result": {"home": 2, "away": 0}
+        "away": "Potsdamer VC 91",
+        "result": {
+          "home": 2,
+          "away": 0
+        }
       },
-        {
+      {
         "time": "13:45",
         "home": "Werderaner VV 1990",
         "away": "RSV Eintracht",
-        "result": {"home": 2, "away": 0}
+        "result": {
+          "home": 2,
+          "away": 0
+        }
       },
-            {
+      {
         "time": "10:00",
         "home": "Werderaner VV 1990",
         "away": "VC BW Brandenburg",
-        "result": {"home": 2, "away": 0}
+        "result": {
+          "home": 0,
+          "away": 2
+        }
       }
     ]
   },
@@ -40,7 +52,12 @@
     "date": "08.11.2026",
     "location": "???",
     "match_day_name": "2. Spieltag LP / LM Qualifikation",
-    "teams": ["Werderaner VV 1990", "VC BW Brandenburg", "Kremmener SV", "SC Potsdam"]
+    "teams": [
+      "Werderaner VV 1990",
+      "VC BW Brandenburg",
+      "Kremmener SV",
+      "SC Potsdam"
+    ]
   },
   {
     "team": "U18 - Weiblich",
@@ -48,7 +65,12 @@
     "date": "28.11.2026",
     "location": "???",
     "match_day_name": "3. Spieltag LP / LM Qualifikation",
-    "teams": ["Werderaner VV 1990", "VC BW Brandenburg", "Kremmener SV", "SC Potsdam"]
+    "teams": [
+      "Werderaner VV 1990",
+      "VC BW Brandenburg",
+      "Kremmener SV",
+      "SC Potsdam"
+    ]
   },
   {
     "team": "U18 - Weiblich",
@@ -56,7 +78,12 @@
     "date": "20.12.2026",
     "location": "???",
     "match_day_name": "LM Qualifikation",
-    "teams": ["Werderaner VV 1990", "VC BW Brandenburg", "Kremmener SV", "SC Potsdam"]
+    "teams": [
+      "Werderaner VV 1990",
+      "VC BW Brandenburg",
+      "Kremmener SV",
+      "SC Potsdam"
+    ]
   },
   {
     "team": "U18 - Weiblich",
@@ -64,7 +91,12 @@
     "date": "10.01.2027",
     "location": "???",
     "match_day_name": "4. Spieltag LP Qualifikation",
-    "teams": ["Werderaner VV 1990", "VC BW Brandenburg", "Kremmener SV", "SC Potsdam"]
+    "teams": [
+      "Werderaner VV 1990",
+      "VC BW Brandenburg",
+      "Kremmener SV",
+      "SC Potsdam"
+    ]
   },
   {
     "team": "U18 - Weiblich",
@@ -72,7 +104,12 @@
     "date": "21.02.2027",
     "location": "???",
     "match_day_name": "5. Spieltag LP Qualifikation",
-    "teams": ["Werderaner VV 1990", "VC BW Brandenburg", "Kremmener SV", "SC Potsdam"]
+    "teams": [
+      "Werderaner VV 1990",
+      "VC BW Brandenburg",
+      "Kremmener SV",
+      "SC Potsdam"
+    ]
   },
   {
     "team": "U18 - Weiblich",
@@ -80,7 +117,12 @@
     "date": "07.03.2027",
     "location": "???",
     "match_day_name": "Landesmeisterschaft",
-    "teams": ["Werderaner VV 1990", "VC BW Brandenburg", "Kremmener SV", "SC Potsdam"]
+    "teams": [
+      "Werderaner VV 1990",
+      "VC BW Brandenburg",
+      "Kremmener SV",
+      "SC Potsdam"
+    ]
   },
   {
     "team": "U18 - Weiblich",
@@ -88,6 +130,11 @@
     "date": "21.04.2027",
     "location": "???",
     "match_day_name": "Landespokal - Endrunde",
-    "teams": ["Werderaner VV 1990", "VC BW Brandenburg", "Kremmener SV", "SC Potsdam"]
+    "teams": [
+      "Werderaner VV 1990",
+      "VC BW Brandenburg",
+      "Kremmener SV",
+      "SC Potsdam"
+    ]
   }
 ]

@@ -6,7 +6,33 @@
     "location": "Marienberghalle",
     "homeTeam": "VC BW Brandenburg",
     "match_day_name": "1. Spieltag LP / LM Qualifikation",
-    "teams": ["Werderaner VV 1990", "VC BW Brandenburg", "VC Schlafmützen 13", "Potsdamer VC 91", "RSV Eintracht"]
+    "match_day_result": "1. Platz",
+    "matches": [
+      {
+        "time": "10:00",
+        "home": "Werderaner VV 1990",
+        "away": "VC Schlafmützen 13",
+        "result": {"home": 2, "away": 0}
+      },
+            {
+        "time": "11:15",
+        "home": "Werderaner VV 1990",
+        "away": "Potsdamer VC",
+        "result": {"home": 2, "away": 0}
+      },
+        {
+        "time": "13:45",
+        "home": "Werderaner VV 1990",
+        "away": "RSV Eintracht",
+        "result": {"home": 2, "away": 0}
+      },
+            {
+        "time": "10:00",
+        "home": "Werderaner VV 1990",
+        "away": "VC BW Brandenburg",
+        "result": {"home": 2, "away": 0}
+      }
+    ]
   },
   {
     "team": "U18 - Weiblich",

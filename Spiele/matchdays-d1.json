@@ -13,7 +13,8 @@
         "home": "SG Einheit Zepernick II",
         "away": "Werderaner VV 1990",
         "result": {
-          "home": 0, "away": 3
+          "home": 0,
+          "away": 3
         }
       },
       {
@@ -21,13 +22,18 @@
         "home": "VC Angermünde",
         "away": "Werderaner VV 1990",
         "result": {
-          "home": 3, "away": 1
+          "home": 3,
+          "away": 1
         }
       },
       {
         "time": "15:00",
         "home": "VC Angermünde",
-        "away": "SG Einheit Zepernick II"
+        "away": "SG Einheit Zepernick II",
+        "result": {
+          "home": 3,
+          "away": 1
+        }
       }
     ]
   },

@@ -1,21 +1,6 @@
 [
 	{
 		"team": "Mixed 2",
-		"home": false,
-		"date": "02.10.2026",
-		"location": "Havelauenhalle",
-		"homeTeam": "Werderaner VV 1990 I",
-		"match_day_name": "Mixed",
-		"matches": [
-			{
-				"time": "20:00",
-				"home": "Werderaner VV 1990 I",
-				"away": "Werderaner VV 1990 II"
-			}
-		]
-	},
-	{
-		"team": "Mixed 2",
 		"home": true,
 		"date": "06.11.2026",
 		"location": "Havelauenhalle",

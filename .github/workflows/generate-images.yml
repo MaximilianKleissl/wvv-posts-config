@@ -8,10 +8,19 @@ on:
 
 permissions:
   contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
 
 jobs:
   generate:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout config
@@ -39,6 +48,60 @@ jobs:
         working-directory: viewer
         run: npx playwright install --with-deps chromium
 
+      - name: Select previous, current, and next weekends
+        id: select-weekends
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+
+          const overview = JSON.parse(fs.readFileSync('Spiele/File_Overview.json', 'utf8'));
+          const matchDays = overview
+            .filter((file) => file !== 'metadata.json' && file !== 'File_Overview.json')
+            .flatMap((file) => JSON.parse(fs.readFileSync(path.join('Spiele', file), 'utf8')));
+
+          const weekStart = (date) => {
+            const monday = new Date(date);
+            monday.setUTCDate(monday.getUTCDate() - ((monday.getUTCDay() + 6) % 7));
+            return monday.toISOString().slice(0, 10);
+          };
+          const parseGermanDate = (value) => {
+            const match = /^(\d{1,2})\.(\d{1,2})\.(\d{4})$/.exec(value?.trim() ?? '');
+            if (!match) return null;
+            const [, day, month, year] = match;
+            const date = new Date(Date.UTC(Number(year), Number(month) - 1, Number(day)));
+            if (date.getUTCDate() !== Number(day) || date.getUTCMonth() !== Number(month) - 1) return null;
+            return date;
+          };
+
+          const berlinToday = new Intl.DateTimeFormat('en-CA', {
+            timeZone: 'Europe/Berlin',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+          }).format(new Date());
+          const today = new Date(`${berlinToday}T00:00:00Z`);
+          const currentWeek = new Date(`${weekStart(today)}T00:00:00Z`);
+          const wantedWeeks = [-7, 0, 7].map((offset) => {
+            const date = new Date(currentWeek);
+            date.setUTCDate(date.getUTCDate() + offset);
+            return date.toISOString().slice(0, 10);
+          });
+          const allWeeks = [...new Set(matchDays.map((matchDay) => {
+            const date = parseGermanDate(matchDay.date);
+            return date ? weekStart(date) : matchDay.date;
+          }))].sort();
+          const indexes = allWeeks
+            .map((week, index) => wantedWeeks.includes(week) ? index : -1)
+            .filter((index) => index >= 0)
+            .join(',');
+
+          console.log(`Berlin date: ${berlinToday}`);
+          console.log(`Selected week starts: ${wantedWeeks.join(', ')}`);
+          console.log(`Export weekend indexes: ${indexes || '(none)'}`);
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `indexes=${indexes}\n`);
+          NODE
+
       - name: Build viewer with this config commit
         working-directory: viewer
         env:
@@ -49,7 +112,10 @@ jobs:
         working-directory: viewer
         env:
           BASE_URL: http://127.0.0.1:4173/wvv-insta-posts/
+          ONLY_WEEKENDS: ${{ steps.select-weekends.outputs.indexes }}
         run: |
+          rm -rf images
+          mkdir -p images
           npm run serve -- --host 127.0.0.1 --port 4173 > /tmp/viewer-preview.log 2>&1 &
           server_pid=$!
           trap 'kill "$server_pid" 2>/dev/null || true' EXIT
@@ -65,12 +131,47 @@ jobs:
             sleep 2
           done
 
-          npx --yes tsx@4.19.3 scripts/export-slides.ts
+          if [ -n "$ONLY_WEEKENDS" ]; then
+            npx --yes tsx@4.19.3 scripts/export-slides.ts --only-weekends="$ONLY_WEEKENDS"
+          else
+            echo "No matchdays in the previous, current, or next weekend; skipping PNG export."
+          fi
 
-      - name: Upload generated images
-        uses: actions/upload-artifact@v4
+      - name: Create image gallery
+        working-directory: viewer
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+
+          const files = fs.readdirSync('images').filter((file) => file.endsWith('.png')).sort();
+          const images = files.map((file) =>
+            `<a href="${file}"><img src="${file}" alt="${file}" loading="lazy"><span>${file}</span></a>`,
+          ).join('\n');
+          const page = `<!doctype html>
+          <html lang="en">
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>WVV Instagram images</title>
+            <style>
+              body{margin:0;padding:2rem;font:16px system-ui,sans-serif;color:#17211d;background:#f4f5f2}
+              h1{font-size:1.5rem}main{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
+              a{color:inherit;text-decoration:none}img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;background:#ddd}
+              span{display:block;padding:.5rem 0;overflow-wrap:anywhere}
+            </style>
+            <h1>WVV Instagram images</h1>
+            <main>${images || '<p>No matchdays for the selected weekends.</p>'}</main>
+          </html>`;
+          fs.writeFileSync('images/index.html', page);
+          NODE
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: instagram-images-${{ github.sha }}
-          path: viewer/images/*.png
-          if-no-files-found: error
-          retention-days: 30
+          path: viewer/images
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

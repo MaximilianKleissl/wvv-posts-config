@@ -141,10 +141,30 @@ jobs:
           done
 
           if [ -n "$ONLY_WEEKENDS" ]; then
-            npx --yes tsx@4.19.3 scripts/export-slides.ts --only-weekends="$ONLY_WEEKENDS"
+            npx --yes tsx@4.19.3 scripts/export-slides.ts --only-weekends="$ONLY_WEEKENDS" --format=portrait_4by5 --pixel-ratio=1
+            npx --yes tsx@4.19.3 scripts/export-slides.ts --only-weekends="$ONLY_WEEKENDS" --format=stories --pixel-ratio=1
           else
             echo "No matchdays in the previous, current, or next weekend; skipping PNG export."
           fi
+
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+
+          const files = fs.readdirSync('images').filter((file) => file.endsWith('.png'));
+          if (process.env.ONLY_WEEKENDS && files.length === 0) {
+            throw new Error('Weekend indexes were selected, but no PNGs were exported.');
+          }
+          for (const file of files) {
+            const header = fs.readFileSync(path.join('images', file));
+            const actual = `${header.readUInt32BE(16)}x${header.readUInt32BE(20)}`;
+            const expected = file.endsWith('_stories.png') ? '1080x1920' : '1080x1350';
+            if (actual !== expected) {
+              throw new Error(`${file}: expected ${expected}, got ${actual}`);
+            }
+            console.log(`${file}: ${actual}`);
+          }
+          NODE
 
       - name: Create image gallery
         working-directory: viewer
@@ -169,9 +189,16 @@ jobs:
             const weekRange = `${formatDate(group.weekStart)}–${formatDate(weekEnd.toISOString().slice(0, 10))}`;
             const prefix = group.weekendIndex === null ? null : `wochenende_${group.weekendIndex + 1}_`;
             const groupFiles = prefix ? files.filter((file) => file.startsWith(prefix)) : [];
-            const cards = groupFiles.map((file) =>
-              `<a href="${encodeURIComponent(file)}"><img src="${encodeURIComponent(file)}" alt="${file}" loading="lazy"><span>${file}</span></a>`,
-            ).join('\n');
+            const portraits = groupFiles.filter((file) => !file.endsWith('_stories.png'));
+            const cards = portraits.map((file) => {
+              const storyFile = file.replace(/\.png$/, '_stories.png');
+              const title = file.replace(prefix, '').replace(/\.png$/, '').replace(/_/g, ' ');
+              const portrait = `<a href="${encodeURIComponent(file)}"><img class="portrait" src="${encodeURIComponent(file)}" alt="${title} – Portrait 4:5" loading="lazy"><span>${title} · Portrait 4:5</span></a>`;
+              const story = groupFiles.includes(storyFile)
+                ? `<a href="${encodeURIComponent(storyFile)}"><img class="story" src="${encodeURIComponent(storyFile)}" alt="${title} – Stories" loading="lazy"><span>${title} · Stories</span></a>`
+                : '';
+              return `<div class="slide-pair">${portrait}${story}</div>`;
+            }).join('\n');
             return `<section><div class="section-heading"><h2>${group.label}</h2><time>${weekRange}</time></div><main>${cards || '<p class="empty">Keine Bilder für diese Woche.</p>'}</main></section>`;
           }).join('\n');
           const updatedAt = new Intl.DateTimeFormat('de-DE', {
@@ -188,8 +215,10 @@ jobs:
               h1{font-size:1.5rem;margin-bottom:.4rem}.updated{margin:0 0 2rem;color:#53615a;font-size:.9rem}
               section{margin:0 0 2.5rem}.section-heading{display:flex;align-items:baseline;gap:.8rem;flex-wrap:wrap;border-bottom:1px solid #cbd2cd;margin-bottom:1rem}
               h2{font-size:1.15rem;margin:.3rem 0 .7rem}.section-heading time{color:#53615a;font-size:.9rem}
-              main{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
-              a{color:inherit;text-decoration:none}img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;background:#ddd}
+              main{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1rem}
+              .slide-pair{display:grid;grid-template-columns:4fr 3fr;align-items:start;gap:.65rem}
+              a{color:inherit;text-decoration:none}img{display:block;width:100%;object-fit:contain;background:#ddd}
+              img.portrait{aspect-ratio:4/5}img.story{aspect-ratio:9/16}
               span{display:block;padding:.5rem 0;overflow-wrap:anywhere}.empty{color:#68756e}
             </style>
             <h1>WVV Instagram-Bilder</h1>

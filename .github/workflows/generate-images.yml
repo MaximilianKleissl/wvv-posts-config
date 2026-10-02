@@ -1,0 +1,76 @@
+name: Generate Instagram images
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout config
+        uses: actions/checkout@v4
+
+      - name: Checkout viewer
+        uses: actions/checkout@v4
+        with:
+          repository: MaximilianKleissl/wvv-insta-posts
+          ref: main
+          path: viewer
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: viewer/package-lock.json
+
+      - name: Install viewer dependencies
+        working-directory: viewer
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        working-directory: viewer
+        run: npx playwright install --with-deps chromium
+
+      - name: Build viewer with this config commit
+        working-directory: viewer
+        env:
+          VITE_CONFIG_BASE_URL: https://raw.githubusercontent.com/${{ github.repository }}/${{ github.sha }}
+        run: npm run build
+
+      - name: Export images
+        working-directory: viewer
+        env:
+          BASE_URL: http://127.0.0.1:4173/wvv-insta-posts/
+        run: |
+          npm run serve -- --host 127.0.0.1 --port 4173 > /tmp/viewer-preview.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+
+          for attempt in $(seq 1 60); do
+            if curl --fail --silent "$BASE_URL" > /dev/null; then
+              break
+            fi
+            if [ "$attempt" -eq 60 ]; then
+              cat /tmp/viewer-preview.log
+              exit 1
+            fi
+            sleep 2
+          done
+
+          node scripts/export-slides.ts
+
+      - name: Upload generated images
+        uses: actions/upload-artifact@v4
+        with:
+          name: instagram-images-${{ github.sha }}
+          path: viewer/images/*.png
+          if-no-files-found: error
+          retention-days: 30

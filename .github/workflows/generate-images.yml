@@ -141,8 +141,8 @@ jobs:
           done
 
           if [ -n "$ONLY_WEEKENDS" ]; then
-            npx --yes tsx@4.19.3 scripts/export-slides.ts --only-weekends="$ONLY_WEEKENDS" --format=portrait_4by5 --pixel-ratio=1
-            npx --yes tsx@4.19.3 scripts/export-slides.ts --only-weekends="$ONLY_WEEKENDS" --format=stories --pixel-ratio=1
+            npx --yes tsx@4.19.3 scripts/export-slides.ts --only-weekends="$ONLY_WEEKENDS" --format=portrait_4by5 --pixel-ratio=1 --image-format=jpeg
+            npx --yes tsx@4.19.3 scripts/export-slides.ts --only-weekends="$ONLY_WEEKENDS" --format=stories --pixel-ratio=1 --image-format=jpeg
           else
             echo "No matchdays in the previous, current, or next weekend; skipping PNG export."
           fi
@@ -151,14 +151,30 @@ jobs:
           import fs from 'node:fs';
           import path from 'node:path';
 
-          const files = fs.readdirSync('images').filter((file) => file.endsWith('.png'));
+          const files = fs.readdirSync('images').filter((file) => file.endsWith('.jpg'));
           if (process.env.ONLY_WEEKENDS && files.length === 0) {
-            throw new Error('Weekend indexes were selected, but no PNGs were exported.');
+            throw new Error('Weekend indexes were selected, but no JPEGs were exported.');
           }
           for (const file of files) {
-            const header = fs.readFileSync(path.join('images', file));
-            const actual = `${header.readUInt32BE(16)}x${header.readUInt32BE(20)}`;
-            const expected = file.endsWith('_stories.png') ? '1080x1920' : '1080x1350';
+            const data = fs.readFileSync(path.join('images', file));
+            if (data[0] !== 0xff || data[1] !== 0xd8) throw new Error(`${file}: not a JPEG`);
+            let offset = 2;
+            let dimensions;
+            while (offset < data.length) {
+              if (data[offset] !== 0xff) throw new Error(`${file}: malformed JPEG marker`);
+              while (data[offset] === 0xff) offset++;
+              const marker = data[offset++];
+              if (marker === 0xd9 || marker === 0xda) break;
+              if (marker === 0x01 || (marker >= 0xd0 && marker <= 0xd7)) continue;
+              const segmentLength = data.readUInt16BE(offset);
+              if ([0xc0, 0xc1, 0xc2, 0xc3, 0xc5, 0xc6, 0xc7, 0xc9, 0xca, 0xcb, 0xcd, 0xce, 0xcf].includes(marker)) {
+                dimensions = `${data.readUInt16BE(offset + 5)}x${data.readUInt16BE(offset + 3)}`;
+                break;
+              }
+              offset += segmentLength;
+            }
+            const actual = dimensions;
+            const expected = file.endsWith('_stories.jpg') ? '1080x1920' : '1080x1350';
             if (actual !== expected) {
               throw new Error(`${file}: expected ${expected}, got ${actual}`);
             }
@@ -179,7 +195,7 @@ jobs:
           import fs from 'node:fs';
 
           const groups = JSON.parse(fs.readFileSync('weekend-groups.json', 'utf8'));
-          const files = fs.readdirSync('images').filter((file) => file.endsWith('.png')).sort();
+          const files = fs.readdirSync('images').filter((file) => file.endsWith('.jpg')).sort();
           const formatDate = (value) => new Intl.DateTimeFormat('de-DE', {
             day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC',
           }).format(new Date(`${value}T00:00:00Z`));
@@ -189,10 +205,10 @@ jobs:
             const weekRange = `${formatDate(group.weekStart)}–${formatDate(weekEnd.toISOString().slice(0, 10))}`;
             const prefix = group.weekendIndex === null ? null : `wochenende_${group.weekendIndex + 1}_`;
             const groupFiles = prefix ? files.filter((file) => file.startsWith(prefix)) : [];
-            const portraits = groupFiles.filter((file) => !file.endsWith('_stories.png'));
+            const portraits = groupFiles.filter((file) => !file.endsWith('_stories.jpg'));
             const cards = portraits.map((file) => {
-              const storyFile = file.replace(/\.png$/, '_stories.png');
-              const title = file.replace(prefix, '').replace(/\.png$/, '').replace(/_/g, ' ');
+              const storyFile = file.replace(/\.jpg$/, '_stories.jpg');
+              const title = file.replace(prefix, '').replace(/\.jpg$/, '').replace(/_/g, ' ');
               const portrait = `<a href="${encodeURIComponent(file)}"><img class="portrait" src="${encodeURIComponent(file)}" alt="${title} – Portrait 4:5" loading="lazy"><span>${title} · Portrait 4:5</span></a>`;
               const story = groupFiles.includes(storyFile)
                 ? `<a href="${encodeURIComponent(storyFile)}"><img class="story" src="${encodeURIComponent(storyFile)}" alt="${title} – Stories" loading="lazy"><span>${title} · Stories</span></a>`

@@ -141,8 +141,8 @@ jobs:
           done
 
           if [ -n "$ONLY_WEEKENDS" ]; then
-            npx --yes tsx@4.19.3 scripts/export-slides.ts --only-weekends="$ONLY_WEEKENDS" --format=portrait_4by5 --pixel-ratio=1 --image-format=jpeg
-            npx --yes tsx@4.19.3 scripts/export-slides.ts --only-weekends="$ONLY_WEEKENDS" --format=stories --pixel-ratio=1 --image-format=jpeg
+            npx --yes tsx@4.19.3 scripts/export-slides.ts --only-weekends="$ONLY_WEEKENDS" --format=portrait_4by5 --pixel-ratio=2 --image-format=jpeg
+            npx --yes tsx@4.19.3 scripts/export-slides.ts --only-weekends="$ONLY_WEEKENDS" --format=stories --pixel-ratio=2 --image-format=jpeg
           else
             echo "No matchdays in the previous, current, or next weekend; skipping PNG export."
           fi
@@ -174,7 +174,7 @@ jobs:
               offset += segmentLength;
             }
             const actual = dimensions;
-            const expected = file.endsWith('_stories.jpg') ? '1080x1920' : '1080x1350';
+            const expected = file.endsWith('_stories.jpg') ? '2160x3840' : '2160x2700';
             if (actual !== expected) {
               throw new Error(`${file}: expected ${expected}, got ${actual}`);
             }

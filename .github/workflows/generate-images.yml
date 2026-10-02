@@ -95,10 +95,19 @@ jobs:
             .map((week, index) => wantedWeeks.includes(week) ? index : -1)
             .filter((index) => index >= 0)
             .join(',');
+          const groups = wantedWeeks.map((week, position) => ({
+            label: ['Letzte Woche', 'Aktuelle Woche', 'Nächste Woche'][position],
+            weekStart: week,
+            weekendIndex: allWeeks.indexOf(week),
+          })).map((group) => ({
+            ...group,
+            weekendIndex: group.weekendIndex < 0 ? null : group.weekendIndex,
+          }));
 
           console.log(`Berlin date: ${berlinToday}`);
           console.log(`Selected week starts: ${wantedWeeks.join(', ')}`);
           console.log(`Export weekend indexes: ${indexes || '(none)'}`);
+          fs.writeFileSync('viewer/weekend-groups.json', JSON.stringify(groups, null, 2));
           fs.appendFileSync(process.env.GITHUB_OUTPUT, `indexes=${indexes}\n`);
           NODE
 
@@ -139,27 +148,53 @@ jobs:
 
       - name: Create image gallery
         working-directory: viewer
+        env:
+          CONFIG_COMMIT_TIMESTAMP: ${{ github.event.head_commit.timestamp || '' }}
         run: |
+          if [ -z "$CONFIG_COMMIT_TIMESTAMP" ]; then
+            CONFIG_COMMIT_TIMESTAMP="$(git -C .. show -s --format=%cI "$GITHUB_SHA")"
+            export CONFIG_COMMIT_TIMESTAMP
+          fi
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
 
+          const groups = JSON.parse(fs.readFileSync('weekend-groups.json', 'utf8'));
           const files = fs.readdirSync('images').filter((file) => file.endsWith('.png')).sort();
-          const images = files.map((file) =>
-            `<a href="${file}"><img src="${file}" alt="${file}" loading="lazy"><span>${file}</span></a>`,
-          ).join('\n');
+          const formatDate = (value) => new Intl.DateTimeFormat('de-DE', {
+            day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC',
+          }).format(new Date(`${value}T00:00:00Z`));
+          const sections = groups.map((group) => {
+            const weekEnd = new Date(`${group.weekStart}T00:00:00Z`);
+            weekEnd.setUTCDate(weekEnd.getUTCDate() + 6);
+            const weekRange = `${formatDate(group.weekStart)}–${formatDate(weekEnd.toISOString().slice(0, 10))}`;
+            const prefix = group.weekendIndex === null ? null : `wochenende_${group.weekendIndex + 1}_`;
+            const groupFiles = prefix ? files.filter((file) => file.startsWith(prefix)) : [];
+            const cards = groupFiles.map((file) =>
+              `<a href="${encodeURIComponent(file)}"><img src="${encodeURIComponent(file)}" alt="${file}" loading="lazy"><span>${file}</span></a>`,
+            ).join('\n');
+            return `<section><div class="section-heading"><h2>${group.label}</h2><time>${weekRange}</time></div><main>${cards || '<p class="empty">Keine Bilder für diese Woche.</p>'}</main></section>`;
+          }).join('\n');
+          const updatedAt = new Intl.DateTimeFormat('de-DE', {
+            dateStyle: 'long', timeStyle: 'short', timeZone: 'Europe/Berlin',
+          }).format(new Date(process.env.CONFIG_COMMIT_TIMESTAMP));
+          const shortSha = process.env.GITHUB_SHA.slice(0, 7);
           const page = `<!doctype html>
-          <html lang="en">
+          <html lang="de">
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>WVV Instagram images</title>
+            <title>WVV Instagram-Bilder</title>
             <style>
               body{margin:0;padding:2rem;font:16px system-ui,sans-serif;color:#17211d;background:#f4f5f2}
-              h1{font-size:1.5rem}main{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
+              h1{font-size:1.5rem;margin-bottom:.4rem}.updated{margin:0 0 2rem;color:#53615a;font-size:.9rem}
+              section{margin:0 0 2.5rem}.section-heading{display:flex;align-items:baseline;gap:.8rem;flex-wrap:wrap;border-bottom:1px solid #cbd2cd;margin-bottom:1rem}
+              h2{font-size:1.15rem;margin:.3rem 0 .7rem}.section-heading time{color:#53615a;font-size:.9rem}
+              main{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
               a{color:inherit;text-decoration:none}img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;background:#ddd}
-              span{display:block;padding:.5rem 0;overflow-wrap:anywhere}
+              span{display:block;padding:.5rem 0;overflow-wrap:anywhere}.empty{color:#68756e}
             </style>
-            <h1>WVV Instagram images</h1>
-            <main>${images || '<p>No matchdays for the selected weekends.</p>'}</main>
+            <h1>WVV Instagram-Bilder</h1>
+            <p class="updated">Letzte Aktualisierung: <time datetime="${process.env.CONFIG_COMMIT_TIMESTAMP}">${updatedAt} Uhr</time> · Commit ${shortSha}</p>
+            ${sections}
           </html>`;
           fs.writeFileSync('images/index.html', page);
           NODE

@@ -184,18 +184,13 @@ jobs:
 
       - name: Create image gallery
         working-directory: viewer
-        env:
-          CONFIG_COMMIT_TIMESTAMP: ${{ github.event.head_commit.timestamp || '' }}
         run: |
-          if [ -z "$CONFIG_COMMIT_TIMESTAMP" ]; then
-            CONFIG_COMMIT_TIMESTAMP="$(git -C .. show -s --format=%cI "$GITHUB_SHA")"
-            export CONFIG_COMMIT_TIMESTAMP
-          fi
+          export BUILD_TIMESTAMP="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
 
           const groups = JSON.parse(fs.readFileSync('weekend-groups.json', 'utf8'));
-          const files = fs.readdirSync('images').filter((file) => file.endsWith('.jpg')).sort();
+          const files = fs.readdirSync('images').filter((file) => file.endsWith('.jpg'));
           const formatDate = (value) => new Intl.DateTimeFormat('de-DE', {
             day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC',
           }).format(new Date(`${value}T00:00:00Z`));
@@ -204,23 +199,28 @@ jobs:
             weekEnd.setUTCDate(weekEnd.getUTCDate() + 6);
             const weekRange = `${formatDate(group.weekStart)}–${formatDate(weekEnd.toISOString().slice(0, 10))}`;
             const prefix = group.weekendIndex === null ? null : `wochenende_${group.weekendIndex + 1}_`;
-            const groupFiles = prefix ? files.filter((file) => file.startsWith(prefix)) : [];
+            const groupFiles = prefix
+              ? files.filter((file) => file.startsWith(prefix)).sort((a, b) => {
+                  const aOverview = a.includes('_overview');
+                  const bOverview = b.includes('_overview');
+                  return aOverview === bOverview ? a.localeCompare(b) : aOverview ? -1 : 1;
+                })
+              : [];
             const portraits = groupFiles.filter((file) => !file.endsWith('_stories.jpg'));
-            const cards = portraits.map((file) => {
+            const cards = portraits.flatMap((file) => {
               const storyFile = file.replace(/\.jpg$/, '_stories.jpg');
               const title = file.replace(prefix, '').replace(/\.jpg$/, '').replace(/_/g, ' ');
-              const portrait = `<a href="${encodeURIComponent(file)}"><img class="portrait" src="${encodeURIComponent(file)}" alt="${title} – Portrait 4:5" loading="lazy"><span>${title} · Portrait 4:5</span></a>`;
-              const story = groupFiles.includes(storyFile)
-                ? `<a href="${encodeURIComponent(storyFile)}"><img class="story" src="${encodeURIComponent(storyFile)}" alt="${title} – Stories" loading="lazy"><span>${title} · Stories</span></a>`
-                : '';
-              return `<div class="slide-pair">${portrait}${story}</div>`;
+              const items = [`<a class="image-card" data-format="portrait" href="${encodeURIComponent(file)}"><img class="portrait" src="${encodeURIComponent(file)}" alt="${title} – Portrait 4:5" loading="lazy"><span>${title} · Portrait 4:5</span></a>`];
+              if (groupFiles.includes(storyFile)) {
+                items.push(`<a class="image-card" data-format="stories" href="${encodeURIComponent(storyFile)}"><img class="story" src="${encodeURIComponent(storyFile)}" alt="${title} – Stories" loading="lazy"><span>${title} · Stories</span></a>`);
+              }
+              return items;
             }).join('\n');
             return `<section><div class="section-heading"><h2>${group.label}</h2><time>${weekRange}</time></div><main>${cards || '<p class="empty">Keine Bilder für diese Woche.</p>'}</main></section>`;
           }).join('\n');
-          const updatedAt = new Intl.DateTimeFormat('de-DE', {
+          const builtAt = new Intl.DateTimeFormat('de-DE', {
             dateStyle: 'long', timeStyle: 'short', timeZone: 'Europe/Berlin',
-          }).format(new Date(process.env.CONFIG_COMMIT_TIMESTAMP));
-          const shortSha = process.env.GITHUB_SHA.slice(0, 7);
+          }).format(new Date(process.env.BUILD_TIMESTAMP));
           const page = `<!doctype html>
           <html lang="de">
             <meta charset="utf-8">
@@ -228,18 +228,34 @@ jobs:
             <title>WVV Instagram-Bilder</title>
             <style>
               body{margin:0;padding:2rem;font:16px system-ui,sans-serif;color:#17211d;background:#f4f5f2}
-              h1{font-size:1.5rem;margin-bottom:.4rem}.updated{margin:0 0 2rem;color:#53615a;font-size:.9rem}
+              h1{font-size:1.5rem;margin-bottom:.4rem}.updated{margin:0 0 1rem;color:#53615a;font-size:.9rem}
+              .format-toggle{display:flex;gap:.4rem;margin:0 0 2rem}.format-toggle button{border:1px solid #9aa79e;background:#fff;color:#25342b;padding:.5rem .85rem;cursor:pointer;font:inherit}.format-toggle button[aria-pressed="true"]{background:#17633a;color:#fff;border-color:#17633a}
               section{margin:0 0 2.5rem}.section-heading{display:flex;align-items:baseline;gap:.8rem;flex-wrap:wrap;border-bottom:1px solid #cbd2cd;margin-bottom:1rem}
               h2{font-size:1.15rem;margin:.3rem 0 .7rem}.section-heading time{color:#53615a;font-size:.9rem}
               main{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1rem}
-              .slide-pair{display:grid;grid-template-columns:4fr 3fr;align-items:start;gap:.65rem}
+              [data-format="stories"]{display:none}.show-stories [data-format="portrait"]{display:none}.show-stories [data-format="stories"]{display:block}
               a{color:inherit;text-decoration:none}img{display:block;width:100%;object-fit:contain;background:#ddd}
               img.portrait{aspect-ratio:4/5}img.story{aspect-ratio:9/16}
               span{display:block;padding:.5rem 0;overflow-wrap:anywhere}.empty{color:#68756e}
             </style>
             <h1>WVV Instagram-Bilder</h1>
-            <p class="updated">Letzte Aktualisierung: <time datetime="${process.env.CONFIG_COMMIT_TIMESTAMP}">${updatedAt} Uhr</time> · Commit ${shortSha}</p>
+            <p class="updated">Zuletzt erstellt: <time datetime="${process.env.BUILD_TIMESTAMP}">${builtAt} Uhr</time></p>
+            <div class="format-toggle" role="group" aria-label="Bildformat auswählen">
+              <button type="button" data-select-format="portrait" aria-pressed="true">Portraits</button>
+              <button type="button" data-select-format="stories" aria-pressed="false">Stories</button>
+            </div>
             ${sections}
+            <script>
+              document.querySelectorAll('[data-select-format]').forEach((button) => {
+                button.addEventListener('click', () => {
+                  const stories = button.dataset.selectFormat === 'stories';
+                  document.body.classList.toggle('show-stories', stories);
+                  document.querySelectorAll('[data-select-format]').forEach((option) => {
+                    option.setAttribute('aria-pressed', String(option === button));
+                  });
+                });
+              });
+            </script>
           </html>`;
           fs.writeFileSync('images/index.html', page);
           NODE

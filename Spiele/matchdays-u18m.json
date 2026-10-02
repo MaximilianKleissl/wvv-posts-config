@@ -5,7 +5,7 @@
     "date": "27.09.2026",
     "location": "Kyritz",
     "homeTeam": "VC Fortuna Kyritz",
-    "match_day_name": "1. Spieltag LP / LM Qualifikation",
+    "match_day_name": "1. Spieltag LP / LM Quali",
     "match_day_result": "1. Platz",
     "matches": [
       {
@@ -39,7 +39,7 @@
     "home": false,
     "date": "08.11.2026",
     "location": "???",
-    "match_day_name": "2. Spieltag LP / LM Qualifikation",
+    "match_day_name": "2. Spieltag LP / LM Quali",
     "teams": ["Werderaner VV 1990", "VC BW Brandenburg", "Kremmener SV", "SC Potsdam"]
   },
   {
@@ -47,7 +47,7 @@
     "home": false,
     "date": "28.11.2026",
     "location": "???",
-    "match_day_name": "3. Spieltag LP / LM Qualifikation",
+    "match_day_name": "3. Spieltag LP / LM Quali",
     "teams": ["Werderaner VV 1990", "VC BW Brandenburg", "Kremmener SV", "SC Potsdam"]
   },
   {
@@ -55,7 +55,7 @@
     "home": false,
     "date": "20.12.2026",
     "location": "???",
-    "match_day_name": "LM Qualifikation",
+    "match_day_name": "LM Quali",
     "teams": ["Werderaner VV 1990", "VC BW Brandenburg", "Kremmener SV", "SC Potsdam"]
   },
   {
@@ -63,7 +63,7 @@
     "home": false,
     "date": "10.01.2027",
     "location": "???",
-    "match_day_name": "4. Spieltag LP Qualifikation",
+    "match_day_name": "4. Spieltag LP Quali",
     "teams": ["Werderaner VV 1990", "VC BW Brandenburg", "Kremmener SV", "SC Potsdam"]
   },
   {
@@ -71,7 +71,7 @@
     "home": false,
     "date": "21.02.2027",
     "location": "???",
-    "match_day_name": "5. Spieltag LP Qualifikation",
+    "match_day_name": "5. Spieltag LP Quali",
     "teams": ["Werderaner VV 1990", "VC BW Brandenburg", "Kremmener SV", "SC Potsdam"]
   },
   {

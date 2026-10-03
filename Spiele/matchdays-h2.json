@@ -35,7 +35,6 @@
           "away": 2
         }
       }
-
     ]
   },
   {
@@ -49,19 +48,32 @@
       {
         "time": "11:00",
         "home": "Werderaner VV 1990 II",
-        "away": "USV Potsdam"
-      },
-      {
-        "time": "15:00",
-        "home": "SV LdV Nauen",
-        "away": "Werderaner VV 1990 II"
+        "away": "USV Potsdam",
+        "result": {
+          "home": 1,
+          "away": 3
+        }
       },
       {
         "time": "13:00",
         "home": "SV LdV Nauen",
-        "away": "USV Potsdam"
+        "away": "USV Potsdam",
+        "result": {
+          "home": 3,
+          "away": 0
+        }
+      },
+      {
+        "time": "15:00",
+        "home": "SV LdV Nauen",
+        "away": "Werderaner VV 1990 II",
+        "result": {
+          "home": 3,
+          "away": 2
+        }
       }
-    ]
+    ],
+    "match_day_result": "1 Punkt"
   },
   {
     "team": "Herren 2",

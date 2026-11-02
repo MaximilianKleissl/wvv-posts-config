@@ -12,35 +12,53 @@
         "time": "10:00",
         "home": "TSGL Schöneiche",
         "away": "Werderaner VV 1990",
-        "result": {"home": 0, "away": 2}
+        "result": {
+          "home": 0,
+          "away": 2
+        }
       },
       {
         "time": "11:15",
         "home": "VC BW Brandenburg",
         "away": "Werderaner VV 1990",
-        "result": {"home": 0, "away": 2}
+        "result": {
+          "home": 0,
+          "away": 2
+        }
       },
       {
         "time": "12:30",
         "home": "Werderaner VV 1990",
         "away": "Cottbuser Volleyballverein",
-        "result": {"home": 2, "away": 0}
+        "result": {
+          "home": 2,
+          "away": 0
+        }
       },
       {
         "time": "15:00",
         "home": "VC Fortuna Kyritz",
         "away": "Werderaner VV 1990",
-        "result": {"home": 0, "away": 2}
+        "result": {
+          "home": 0,
+          "away": 2
+        }
       }
     ]
   },
   {
     "team": "U18 - Männlich",
-    "home": false,
+    "home": true,
     "date": "08.11.2026",
-    "location": "???",
+    "location": "Havelauenhalle ",
     "match_day_name": "2. Spieltag LP / LM Quali",
-    "teams": ["Werderaner VV 1990", "VC BW Brandenburg", "Kremmener SV", "SC Potsdam"]
+    "teams": [
+      "Werderaner VV 1990",
+      "VC BW Brandenburg",
+      "Lindower SV GW",
+      "SC Einheit Luckau",
+      "Kremmener SV"
+    ]
   },
   {
     "team": "U18 - Männlich",
@@ -48,7 +66,12 @@
     "date": "28.11.2026",
     "location": "???",
     "match_day_name": "3. Spieltag LP / LM Quali",
-    "teams": ["Werderaner VV 1990", "VC BW Brandenburg", "Kremmener SV", "SC Potsdam"]
+    "teams": [
+      "Werderaner VV 1990",
+      "VC BW Brandenburg",
+      "Kremmener SV",
+      "SC Potsdam"
+    ]
   },
   {
     "team": "U18 - Männlich",
@@ -56,7 +79,12 @@
     "date": "20.12.2026",
     "location": "???",
     "match_day_name": "LM Quali",
-    "teams": ["Werderaner VV 1990", "VC BW Brandenburg", "Kremmener SV", "SC Potsdam"]
+    "teams": [
+      "Werderaner VV 1990",
+      "VC BW Brandenburg",
+      "Kremmener SV",
+      "SC Potsdam"
+    ]
   },
   {
     "team": "U18 - Männlich",
@@ -64,7 +92,12 @@
     "date": "10.01.2027",
     "location": "???",
     "match_day_name": "4. Spieltag LP Quali",
-    "teams": ["Werderaner VV 1990", "VC BW Brandenburg", "Kremmener SV", "SC Potsdam"]
+    "teams": [
+      "Werderaner VV 1990",
+      "VC BW Brandenburg",
+      "Kremmener SV",
+      "SC Potsdam"
+    ]
   },
   {
     "team": "U18 - Männlich",
@@ -72,7 +105,12 @@
     "date": "21.02.2027",
     "location": "???",
     "match_day_name": "5. Spieltag LP Quali",
-    "teams": ["Werderaner VV 1990", "VC BW Brandenburg", "Kremmener SV", "SC Potsdam"]
+    "teams": [
+      "Werderaner VV 1990",
+      "VC BW Brandenburg",
+      "Kremmener SV",
+      "SC Potsdam"
+    ]
   },
   {
     "team": "U18 - Männlich",
@@ -80,7 +118,12 @@
     "date": "07.03.2027",
     "location": "???",
     "match_day_name": "Landesmeisterschaft",
-    "teams": ["Werderaner VV 1990", "VC BW Brandenburg", "Kremmener SV", "SC Potsdam"]
+    "teams": [
+      "Werderaner VV 1990",
+      "VC BW Brandenburg",
+      "Kremmener SV",
+      "SC Potsdam"
+    ]
   },
   {
     "team": "U18 - Männlich",
@@ -88,6 +131,11 @@
     "date": "21.04.2027",
     "location": "???",
     "match_day_name": "Landespokal - Endrunde",
-    "teams": ["Werderaner VV 1990", "VC BW Brandenburg", "Kremmener SV", "SC Potsdam"]
+    "teams": [
+      "Werderaner VV 1990",
+      "VC BW Brandenburg",
+      "Kremmener SV",
+      "SC Potsdam"
+    ]
   }
 ]
